@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonJs",
+		"esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "target": "es2017",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "rootDir": ".",
+    "jsx": "react"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
