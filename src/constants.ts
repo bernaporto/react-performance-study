@@ -1,3 +1,4 @@
+export const TEST_DATA_QUERY_KEY = 'test-date';
 export const TEST_DATA_URL = 'https://jsonplaceholder.typicode.com/comments';
 
 export enum ERouteType {

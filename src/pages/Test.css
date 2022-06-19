@@ -1,0 +1,10 @@
+.test-page-description {
+  max-width: 46rem;
+  text-align: center;
+  margin: auto;
+}
+
+.test-page-button-area {
+  width: fit-content;
+  margin: 0 auto;
+}
