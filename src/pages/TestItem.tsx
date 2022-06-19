@@ -6,7 +6,7 @@ export const TestItemPage: FC = () => {
   const { state } = useLocation();
 
   return (
-    <section data-testid="test-item-page-root">
+    <section data-testid="test-item-page-root" className="page-container">
       <ItemDetails data={state} />
     </section>
   );

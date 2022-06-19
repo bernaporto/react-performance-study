@@ -1,13 +1,12 @@
 import './Header.css';
 import React, { FC } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, matchPath } from 'react-router-dom';
 import { ERouteType, routeTitleMap } from '../constants';
 import { history } from '../history';
 
 export const Header: FC = () => {
-  const location = useLocation();
-
-  const title = routeTitleMap[location.pathname as ERouteType];
+  const route = useRoutePattern();
+  const title = route ? routeTitleMap[route] : '';
 
   return (
     <header className="header-root">
@@ -37,5 +36,16 @@ function BackButton() {
     >
       <span className="material-icons">arrow_back</span>
     </button>
+  );
+}
+
+function useRoutePattern(): ERouteType | null {
+  const { pathname } = useLocation();
+
+  return (
+    (Object.values(ERouteType)
+      .map((pattern) => matchPath(pattern, pathname))
+      .map((match) => match?.pattern.path)
+      .find(Boolean) as ERouteType) ?? null
   );
 }
