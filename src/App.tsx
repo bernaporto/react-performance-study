@@ -1,7 +1,8 @@
 import './App.css';
 import React, { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { RouteType } from './constants';
+import { Route, Routes } from 'react-router-dom';
+import { ERouteType } from './constants';
+import { CustomBrowserRouter, Layout } from './components';
 import {
   MainPage,
   PerformanceItemPage,
@@ -12,17 +13,19 @@ import {
 
 export const App: FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={RouteType.MAIN} element={<MainPage />} />
-        <Route path={RouteType.TEST} element={<TestPage />} />
-        <Route path={RouteType.TEST_ITEM} element={<TestItemPage />} />
-        <Route path={RouteType.PERFORMANCE} element={<PerformancePage />} />
-        <Route
-          path={`${RouteType.PERFORMANCE}/:uid`}
-          element={<PerformanceItemPage />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <CustomBrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path={ERouteType.MAIN} element={<MainPage />} />
+          <Route path={ERouteType.TEST} element={<TestPage />} />
+          <Route path={ERouteType.TEST_ITEM} element={<TestItemPage />} />
+          <Route path={ERouteType.PERFORMANCE} element={<PerformancePage />} />
+          <Route
+            path={`${ERouteType.PERFORMANCE}/:uid`}
+            element={<PerformanceItemPage />}
+          />
+        </Routes>
+      </Layout>
+    </CustomBrowserRouter>
   );
 };
