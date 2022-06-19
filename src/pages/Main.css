@@ -1,0 +1,11 @@
+.main-page-root {
+  max-width: 70rem;
+  margin: auto;
+}
+
+.main-page-description {
+  font-size: 1.8rem;
+  max-width: 52rem;
+  text-align: center;
+  margin: 6rem auto;
+}

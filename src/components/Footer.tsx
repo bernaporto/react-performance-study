@@ -1,16 +1,13 @@
+import './Footer.css';
 import React, { FC } from 'react';
-import { LinkBlank } from './Link';
+import { LinkedinLink } from './Link';
 
 export const Footer: FC = () => {
   return (
     <footer className="footer-root">
-      <section className="container">
+      <section className="container footer-disclaimer">
         <p>
-          developed by{' '}
-          <LinkBlank
-            url="https://www.linkedin.com/in/bernaporto"
-            label="Bernardo Porto"
-          />
+          developed by <LinkedinLink />
         </p>
       </section>
     </footer>
