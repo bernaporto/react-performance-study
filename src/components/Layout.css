@@ -1,0 +1,5 @@
+.layout-content {
+  margin-top: 5.2rem !important;
+  padding-top: 2.4rem !important;
+  min-height: calc(100vh - 5.2rem - 5.2rem - 1.6rem);
+}

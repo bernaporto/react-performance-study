@@ -1,0 +1,11 @@
+.footer-root {
+  display: block;
+  margin-top: 1.6rem;
+  height: 5.2rem;
+}
+
+.footer-root p {
+  text-align: center;
+  width: fit-content;
+  line-height: 5.2rem;
+}
