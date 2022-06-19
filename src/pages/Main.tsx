@@ -52,7 +52,10 @@ const stackConfig: IStackConfig[] = [
 ];
 
 export const MainPage: FC = () => (
-  <section data-testid="main-page-root" className="main-page-root">
+  <section
+    data-testid="main-page-root"
+    className="page-container main-page-root"
+  >
     <section>
       <p className="main-page-description">
         This single page application was developed by <LinkedinLink /> as a

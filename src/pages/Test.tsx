@@ -56,7 +56,7 @@ export const TestPage: FC = () => {
   };
 
   return (
-    <section data-testid="test-page-root">
+    <section data-testid="test-page-root" className="page-container">
       {!testData ? (
         <NoDataPage getData={handleGetData} />
       ) : (

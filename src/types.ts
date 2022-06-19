@@ -1,3 +1,7 @@
+export type WithUid<T> = T & {
+  uid: string;
+};
+
 export interface ITestData {
   body: string;
   email: string;
@@ -5,3 +9,11 @@ export interface ITestData {
   name: string;
   postId: number;
 }
+
+export interface IPerformanceData {
+  fetchData: number | null;
+  renderComponent: number | null;
+  reportTime: string;
+}
+
+export type TPerformanceDataWithUid = WithUid<IPerformanceData>;
