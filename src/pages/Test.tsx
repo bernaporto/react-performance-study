@@ -9,9 +9,9 @@ import {
   TEST_DATA_URL,
 } from '../constants';
 import { EventTools } from '../utils';
-import { ITestData } from '../types';
+import { IPerformanceData, ITestData } from '../types';
 import { TestDataTable } from '../components';
-import { performanceStorage } from '../storage';
+import { usePerformanceStorage } from '../hooks/usePerformanceStorage';
 
 const events = new EventTools<EEventType>();
 
@@ -19,6 +19,7 @@ const fetchData = (): Promise<ITestData[]> =>
   fetch(TEST_DATA_URL).then((response) => response.json());
 
 export const TestPage: FC = () => {
+  const { pushItem } = usePerformanceStorage();
   const [testData, setTestData] = useState<ITestData[] | null>(null);
   const { data, refetch, remove } = useQuery<ITestData[]>({
     queryKey: TEST_DATA_QUERY_KEY,
@@ -33,7 +34,9 @@ export const TestPage: FC = () => {
   useEffect(() => {
     if (testData && events.isOpen(EEventType.RENDER)) {
       events.end(EEventType.RENDER);
-      savePerformanceReport();
+
+      const perfData = getPerformanceData();
+      perfData && pushItem(perfData);
     }
   }, [testData]);
 
@@ -109,15 +112,15 @@ const DataPage: FC<{
   </>
 );
 
-function savePerformanceReport() {
+function getPerformanceData(): IPerformanceData | null {
   const reportTime = new Date().toLocaleString();
   const results = events.getResults();
   events.clear();
 
-  if (Object.keys(results).length === 0) return;
+  if (Object.keys(results).length === 0) return null;
 
-  performanceStorage.push({
+  return {
     ...results,
     reportTime,
-  });
+  };
 }

@@ -3,32 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import { EEventType, ERouteType } from '../constants';
 import { Table } from './Table';
 import { TPerformanceDataWithUid } from '../types';
-import { performanceStorage } from '../storage';
+import { usePerformanceStorage } from '../hooks/usePerformanceStorage';
 
 type TPerformanceDataKeys = (keyof TPerformanceDataWithUid)[];
 
 export const PerformanceDataTable: FC = (props) => {
   const navigate = useNavigate();
-  const [items, setItems] = useState<TPerformanceDataWithUid[]>([]);
+  const { items, deleteItem } = usePerformanceStorage();
   const [dataKeys, updateDataKeys] = useState<TPerformanceDataKeys>(getKeys());
 
   useEffect(() => {
-    setItems(performanceStorage.getAll());
-
     const updateKeys = () => updateDataKeys(getKeys());
 
     window.addEventListener('resize', updateKeys);
     return () => window.removeEventListener('resize', updateKeys);
   }, []);
 
-  const goToItem = ({ uid }: TPerformanceDataWithUid) => {
+  const goToItem = ({ uid }: TPerformanceDataWithUid) =>
     navigate(`${ERouteType.PERFORMANCE}/${uid}`);
-  };
 
-  const handleDelete = ({ uid }: TPerformanceDataWithUid) => {
-    performanceStorage.delete(uid);
-    setItems(performanceStorage.getAll());
-  };
+  const handleDelete = ({ uid }: TPerformanceDataWithUid) => deleteItem(uid);
 
   return (
     <Table
