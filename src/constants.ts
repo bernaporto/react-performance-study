@@ -1,3 +1,4 @@
+export const BASE_STORAGE_KEY = 'REACT_APP';
 export const TEST_DATA_QUERY_KEY = 'test-date';
 export const TEST_DATA_URL = 'https://jsonplaceholder.typicode.com/comments';
 
@@ -14,3 +15,8 @@ export const routeTitleMap: Record<ERouteType, string> = {
   [ERouteType.PERFORMANCE]: '3. Performance Page',
   [ERouteType.TEST_ITEM]: 'Item Details',
 };
+
+export enum EEventType {
+  FETCH = 'fetchData',
+  RENDER = 'renderComponent',
+}
