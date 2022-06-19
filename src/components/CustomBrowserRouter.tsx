@@ -22,10 +22,11 @@ export const CustomBrowserRouter: FC<PropsWithChildren> = (props) => {
 
   return (
     <Router
-      children={children}
       location={state.location}
       navigationType={state.action}
       navigator={history}
-    />
+    >
+      {children}
+    </Router>
   );
 };

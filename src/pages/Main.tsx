@@ -56,7 +56,7 @@ export const MainPage: FC = () => (
     <section>
       <p className="main-page-description">
         This single page application was developed by <LinkedinLink /> as a
-        study case about React's performance while fetching and presenting
+        study case about React&rsquo;s performance while fetching and presenting
         external data.
       </p>
     </section>
