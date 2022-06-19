@@ -1,6 +1,7 @@
 import React from 'react';
 
-interface ITableProps<T, K extends keyof T & string = keyof T & string> {
+type TKeys<T> = keyof T & string;
+interface ITableProps<T, K extends TKeys<T> = TKeys<T>> {
   keys: K[];
   items: T[];
   onClickView?: (data: T) => void;
@@ -40,7 +41,7 @@ export function Table<T>(props: ITableProps<T>) {
   );
 }
 
-interface IRowProps<T, K extends keyof T & string = keyof T & string> {
+interface IRowProps<T, K extends TKeys<T> = TKeys<T>> {
   data: T;
   keys: K[];
   onClickView?: (data: T) => void;
@@ -53,7 +54,7 @@ function Row<T>(props: IRowProps<T>) {
   return (
     <tr>
       {keys.map((key, index) => (
-        <td key={index}>{JSON.stringify(data[key]) || '-'}</td>
+        <td key={index}>{sanitizeData(data[key]) ?? '-'}</td>
       ))}
       {onClickView && (
         <td>
@@ -77,4 +78,11 @@ function Row<T>(props: IRowProps<T>) {
       )}
     </tr>
   );
+}
+
+function sanitizeData(data: unknown): string | null {
+  if (!data) return null;
+  if (typeof data === 'string') return data;
+
+  return JSON.stringify(data);
 }
